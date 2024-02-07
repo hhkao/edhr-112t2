@@ -45,7 +45,7 @@ if (dim(flag_person %>% subset(err_flag == 1))[1] != 0) {
   
   #合併所有name
   temp <-
-    colnames(flag_person_wide_flag74)[3:length(colnames(flag_person_wide_flag74))]
+    colnames(flag_person_wide_flag74)[2:length(colnames(flag_person_wide_flag74))]
   flag_person_wide_flag74$flag74_r <- NA
   for (i in temp) {
     flag_person_wide_flag74$flag74_r <-
