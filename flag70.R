@@ -10,7 +10,7 @@ flag_person$err_flag <- if_else(
       flag_person$leave != "N" |
         flag_person$levpay != "N" |
         grepl("借調至", flag_person$brtype) |
-        grepl("商借至", flag_person$levpay) |
+        grepl("商借至", flag_person$negle) |
         flag_person$suspend != "N"
     ),
   1,
