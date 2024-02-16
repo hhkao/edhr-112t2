@@ -2,7 +2,7 @@
 flag_person <- drev_P_load
 #包含"未填在教學資料表"者
 
-#有請假、留停、借調、商借或停聘的情形，且每週實際教學節數任一欄位不為0(加總 > 0)，則抓出
+#未調離本校、商借至其他學校單位、留職停薪、請假或停職(停聘)者，則抓出
 flag_person$err_flag <- 0
 flag_person$err_flag <- if_else(
   flag_person$load == "" &
@@ -11,11 +11,11 @@ flag_person$err_flag <- if_else(
     flag_person$emptype %in% c("專任", "代理", "代理(連)") &
     flag_person$sertype %in% c("校長", "教師", "主任教官", "教官") &
     (
-      flag_person$leave == "N" |
-        flag_person$levpay == "N" |
-        !grepl("借調至", flag_person$brtype) |
-        !grepl("商借至", flag_person$levpay) |
-        flag_person$suspend != "N"
+      flag_person$leave == "N" &
+        flag_person$levpay == "N" &
+        !grepl("借調至", flag_person$brtype) &
+        !grepl("商借至", flag_person$negle) &
+        flag_person$suspend == "N"
     ),
   1,
   flag_person$err_flag
