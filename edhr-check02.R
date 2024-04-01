@@ -366,126 +366,126 @@ check02 <-
     all.x = TRUE,
     all.y = TRUE
   )
-check02 <-
-  merge(
-    x = check02,
-    y = flag25,
-    by = c("organization_id"),
-    all.x = TRUE,
-    all.y = TRUE
-  )
-check02 <-
-  merge(
-    x = check02,
-    y = flag26,
-    by = c("organization_id"),
-    all.x = TRUE,
-    all.y = TRUE
-  )
-check02 <-
-  merge(
-    x = check02,
-    y = flag29,
-    by = c("organization_id"),
-    all.x = TRUE,
-    all.y = TRUE
-  )
-check02 <-
-  merge(
-    x = check02,
-    y = flag31,
-    by = c("organization_id"),
-    all.x = TRUE,
-    all.y = TRUE
-  )
-check02 <-
-  merge(
-    x = check02,
-    y = flag56,
-    by = c("organization_id"),
-    all.x = TRUE,
-    all.y = TRUE
-  )
-check02 <-
-  merge(
-    x = check02,
-    y = flag58,
-    by = c("organization_id"),
-    all.x = TRUE,
-    all.y = TRUE
-  )
-check02 <-
-  merge(
-    x = check02,
-    y = flag61,
-    by = c("organization_id"),
-    all.x = TRUE,
-    all.y = TRUE
-  )
-check02 <-
-  merge(
-    x = check02,
-    y = flag67,
-    by = c("organization_id"),
-    all.x = TRUE,
-    all.y = TRUE
-  )
-check02 <-
-  merge(
-    x = check02,
-    y = flag68,
-    by = c("organization_id"),
-    all.x = TRUE,
-    all.y = TRUE
-  )
-check02 <-
-  merge(
-    x = check02,
-    y = flag69,
-    by = c("organization_id"),
-    all.x = TRUE,
-    all.y = TRUE
-  )
-check02 <-
-  merge(
-    x = check02,
-    y = flag70,
-    by = c("organization_id"),
-    all.x = TRUE,
-    all.y = TRUE
-  )
-check02 <-
-  merge(
-    x = check02,
-    y = flag74,
-    by = c("organization_id"),
-    all.x = TRUE,
-    all.y = TRUE
-  )
-check02 <-
-  merge(
-    x = check02,
-    y = flag75,
-    by = c("organization_id"),
-    all.x = TRUE,
-    all.y = TRUE
-  )
-check02 <-
-  merge(
-    x = check02,
-    y = flag101,
-    by = c("organization_id"),
-    all.x = TRUE,
-    all.y = TRUE
-  )
-check02 <-
-  merge(
-    x = check02,
-    y = spe4,
-    by = c("organization_id"),
-    all.x = TRUE,
-    all.y = TRUE
-  )
+# check02 <-
+#   merge(
+#     x = check02,
+#     y = flag25,
+#     by = c("organization_id"),
+#     all.x = TRUE,
+#     all.y = TRUE
+#   )
+# check02 <-
+#   merge(
+#     x = check02,
+#     y = flag26,
+#     by = c("organization_id"),
+#     all.x = TRUE,
+#     all.y = TRUE
+#   )
+# check02 <-
+#   merge(
+#     x = check02,
+#     y = flag29,
+#     by = c("organization_id"),
+#     all.x = TRUE,
+#     all.y = TRUE
+#   )
+# check02 <-
+#   merge(
+#     x = check02,
+#     y = flag31,
+#     by = c("organization_id"),
+#     all.x = TRUE,
+#     all.y = TRUE
+#   )
+# check02 <-
+#   merge(
+#     x = check02,
+#     y = flag56,
+#     by = c("organization_id"),
+#     all.x = TRUE,
+#     all.y = TRUE
+#   )
+# check02 <-
+#   merge(
+#     x = check02,
+#     y = flag58,
+#     by = c("organization_id"),
+#     all.x = TRUE,
+#     all.y = TRUE
+#   )
+# check02 <-
+#   merge(
+#     x = check02,
+#     y = flag61,
+#     by = c("organization_id"),
+#     all.x = TRUE,
+#     all.y = TRUE
+#   )
+# check02 <-
+#   merge(
+#     x = check02,
+#     y = flag67,
+#     by = c("organization_id"),
+#     all.x = TRUE,
+#     all.y = TRUE
+#   )
+# check02 <-
+#   merge(
+#     x = check02,
+#     y = flag68,
+#     by = c("organization_id"),
+#     all.x = TRUE,
+#     all.y = TRUE
+#   )
+# check02 <-
+#   merge(
+#     x = check02,
+#     y = flag69,
+#     by = c("organization_id"),
+#     all.x = TRUE,
+#     all.y = TRUE
+#   )
+# check02 <-
+#   merge(
+#     x = check02,
+#     y = flag70,
+#     by = c("organization_id"),
+#     all.x = TRUE,
+#     all.y = TRUE
+#   )
+# check02 <-
+#   merge(
+#     x = check02,
+#     y = flag74,
+#     by = c("organization_id"),
+#     all.x = TRUE,
+#     all.y = TRUE
+#   )
+# check02 <-
+#   merge(
+#     x = check02,
+#     y = flag75,
+#     by = c("organization_id"),
+#     all.x = TRUE,
+#     all.y = TRUE
+#   )
+# check02 <-
+#   merge(
+#     x = check02,
+#     y = flag101,
+#     by = c("organization_id"),
+#     all.x = TRUE,
+#     all.y = TRUE
+#   )
+# check02 <-
+#   merge(
+#     x = check02,
+#     y = spe4,
+#     by = c("organization_id"),
+#     all.x = TRUE,
+#     all.y = TRUE
+#   )
 #輸出檢核結果excel檔
 openxlsx::write.xlsx(check02,
                      file = "./dist/edhr-112t2-check_print.xlsx",
