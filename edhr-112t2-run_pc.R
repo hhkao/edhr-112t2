@@ -1583,7 +1583,7 @@ if(!file.exists(checkfile_server) | #print檔案不存在
     }
     
     #本次上傳 - 本次出現但上次沒出現
-    organization <- readxl :: read_excel("\\\\192.168.110.245\\Plan_edhr\\教育部高級中等學校教育人力資源資料庫建置第7期計畫(1120201_1130731)\\1121全國學校名單.xls") %>% #[每次填報更改]本次填報的學校名單檔案路徑
+    organization <- readxl :: read_excel("\\\\192.168.110.245\\Plan_edhr\\教育部高級中等學校教育人力資源資料庫建置第7期計畫(1120201_1130731)\\1122國立學校名單.xlsx") %>% #[每次填報更改]本次填報的學校名單檔案路徑
       select("學校代碼", "學校名稱") %>%
       rename(organization_id = 學校代碼, edu_name = 學校名稱) %>%
       rename(name = edu_name)
