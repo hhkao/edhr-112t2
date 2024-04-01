@@ -1,36 +1,36 @@
-# 人事資料表與教學資料表合併 -----------------------------------------------------------
-data_load <- data_load %>%
-  mutate(load = 1)
-drev_P_load <-
-  merge(
-    x = drev_person_1,
-    y = data_load,
-    by = c("organization_id", "idnumber"),
-    all.x = TRUE,
-    all.y = TRUE
-  )
-#name欄位重複處理
-drev_P_load$name <- drev_P_load$name.x
-drev_P_load <- drev_P_load %>%
-  select(-c("name.x", "name.y"))
-#將每週基本教學節數、減授節數、校外兼課總節數的"NA"改為空值，以利後續分析
-drev_P_load$basic <-
-  if_else(drev_P_load$basic == "NA", "", drev_P_load$basic)
-drev_P_load$cut <-
-  if_else(drev_P_load$cut == "NA", "", drev_P_load$cut)
-drev_P_load$othertime <-
-  if_else(drev_P_load$othertime == "NA", "", drev_P_load$othertime)
-
-#將merge後出現NA的欄位改為空值，避免後續出錯
-drev_P_load[is.na(drev_P_load)] <- ""
-
-drev_P_load$basic <- drev_P_load$basic %>% as.numeric()
-drev_P_load$cut <- drev_P_load$basic %>% as.numeric()
-drev_P_load$hschftime <- drev_P_load$hschftime %>% as.numeric()
-drev_P_load$hschcftime <- drev_P_load$hschcftime %>% as.numeric()
-drev_P_load$hschptime <- drev_P_load$hschptime %>% as.numeric()
-drev_P_load$jhschftime <- drev_P_load$jhschftime %>% as.numeric()
-drev_P_load$othertime <- drev_P_load$basic %>% as.numeric()
+# # 人事資料表與教學資料表合併 -----------------------------------------------------------
+# data_load <- data_load %>%
+#   mutate(load = 1)
+# drev_P_load <-
+#   merge(
+#     x = drev_person_1,
+#     y = data_load,
+#     by = c("organization_id", "idnumber"),
+#     all.x = TRUE,
+#     all.y = TRUE
+#   )
+# #name欄位重複處理
+# drev_P_load$name <- drev_P_load$name.x
+# drev_P_load <- drev_P_load %>%
+#   select(-c("name.x", "name.y"))
+# #將每週基本教學節數、減授節數、校外兼課總節數的"NA"改為空值，以利後續分析
+# drev_P_load$basic <-
+#   if_else(drev_P_load$basic == "NA", "", drev_P_load$basic)
+# drev_P_load$cut <-
+#   if_else(drev_P_load$cut == "NA", "", drev_P_load$cut)
+# drev_P_load$othertime <-
+#   if_else(drev_P_load$othertime == "NA", "", drev_P_load$othertime)
+# 
+# #將merge後出現NA的欄位改為空值，避免後續出錯
+# drev_P_load[is.na(drev_P_load)] <- ""
+# 
+# drev_P_load$basic <- drev_P_load$basic %>% as.numeric()
+# drev_P_load$cut <- drev_P_load$basic %>% as.numeric()
+# drev_P_load$hschftime <- drev_P_load$hschftime %>% as.numeric()
+# drev_P_load$hschcftime <- drev_P_load$hschcftime %>% as.numeric()
+# drev_P_load$hschptime <- drev_P_load$hschptime %>% as.numeric()
+# drev_P_load$jhschftime <- drev_P_load$jhschftime %>% as.numeric()
+# drev_P_load$othertime <- drev_P_load$basic %>% as.numeric()
 
 # 人事資料表與離退教職員(工)資料表合併 (inner join) -----------------------------------------------------------
 drev_P_retire <-
