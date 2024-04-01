@@ -21,7 +21,7 @@ suppressWarnings({
 time_now <- Sys.time()
 
 #[每次填報更改]請輸入本次填報設定檔標題(字串需與標題完全相符，否則會找不到)
-title <- "112學年度下學期高級中等學校教育人力資源資料庫（國立學校人事及教務）"
+title <- "112學年度下學期高級中等學校教育人力資源資料庫（國立學校人事）"
 
 #[每次填報更改]請更改自己管區的學校代碼
 dis <- c(
@@ -71,7 +71,7 @@ dis <- c(
   "200407"
 )
 
-checkfile_server <- "\\\\192.168.110.245\\Plan_edhr\\教育部高級中等學校教育人力資源資料庫建置第7期計畫(1120201_1130731)\\檢核語法檔\\R\\自動化資料檢核結果\\\\edhr-112t2-check_print-人事.xlsx" #[每次填報更改]請更改本次server匯出的檢核結果檔之路徑
+checkfile_server <- "\\\\192.168.110.245\\Plan_edhr\\教育部高級中等學校教育人力資源資料庫建置第7期計畫(1120201_1130731)\\檢核語法檔\\R\\自動化資料檢核結果\\\\edhr-112t2-check_print.xlsx" #[每次填報更改]請更改本次server匯出的檢核結果檔之路徑
 check02_server <- readxl :: read_excel(checkfile_server)
 
 #審核同意的名單 = check02_server subset自己管區學校的名單
@@ -1472,7 +1472,7 @@ check02 <- check02_server %>%
 
 check02$err_flag <- 0
 
-temp <- c("flag1", "flag2", "flag3", "flag6", "flag7", "flag8", "flag9", "flag15", "flag16", "flag18", "flag19", "flag20", "flag24", "flag39", "flag45", "flag47", "flag48", "flag49", "flag50", "flag51", "flag52", "flag57", "flag59", "flag62", "flag64", "flag80", "flag82", "flag83", "flag84", "flag85", "flag86", "flag89", "flag90", "flag91", "flag92", "flag93", "flag94", "flag95", "flag96", "flag97", "flag98", "flag99", "flag100", "spe3", "spe5", "spe6", "flag25", "flag26", "flag29", "flag31", "flag56", "flag58", "flag61", "flag67", "flag68", "flag69", "flag70", "flag74", "flag75", "flag101", "spe4")
+temp <- c("flag1", "flag2", "flag3", "flag6", "flag7", "flag8", "flag9", "flag15", "flag16", "flag18", "flag19", "flag20", "flag24", "flag39", "flag45", "flag47", "flag48", "flag49", "flag50", "flag51", "flag52", "flag57", "flag59", "flag62", "flag64", "flag80", "flag82", "flag83", "flag84", "flag85", "flag86", "flag89", "flag90", "flag91", "flag92", "flag93", "flag94", "flag95", "flag96", "flag97", "flag98", "flag99", "flag100", "spe3", "spe5", "spe6")
 for (i in temp){
   check02[[i]] <- if_else(is.na(check02[[i]]), "", check02[[i]])
   check02$err_flag <- if_else(nchar(check02[[i]]) != 0, 1, check02$err_flag)
@@ -1494,27 +1494,27 @@ for (i in temp){
 
 check02$err_flag_Ps <- check02$err_flag_Ps %>% as.character()
 
-check02$err_flag_LC <- 0
-check02$err_flag_LCs <- 0
-temp <- c("flag25", "flag26", "flag29", "flag31", "flag56", "flag58", "flag61", "flag67", "flag68", "flag69", "flag70", "flag74", "flag75", "flag101", "spe4")
-for (i in temp){
-  check02$err_flag_LC <- if_else(check02[[i]] == "", 1, check02$err_flag_LC)
-  check02$err_flag_LCs <- if_else(check02[[i]] != "", 1 + check02$err_flag_LCs, check02$err_flag_LCs)
-}
-
-check02$err_flag_LCs <- check02$err_flag_LCs %>% as.character()
+# check02$err_flag_LC <- 0
+# check02$err_flag_LCs <- 0
+# temp <- c("flag25", "flag26", "flag29", "flag31", "flag56", "flag58", "flag61", "flag67", "flag68", "flag69", "flag70", "flag74", "flag75", "flag101", "spe4")
+# for (i in temp){
+#   check02$err_flag_LC <- if_else(check02[[i]] == "", 1, check02$err_flag_LC)
+#   check02$err_flag_LCs <- if_else(check02[[i]] != "", 1 + check02$err_flag_LCs, check02$err_flag_LCs)
+# }
+# 
+# check02$err_flag_LCs <- check02$err_flag_LCs %>% as.character()
 
 check02$flag_P_txt <- if_else(
   check02$err_flag_P == 0, "貴處室提供的資料，沒有檢查出需要修正之處。謝謝貴處室協助完成填報工作，請等待其他處室重新上傳資料，如果處室間資料比對有誤，系統會再發信通知。謝謝！",
   paste0("經本計畫複檢，仍發現共有",  check02$err_flag_Ps,  "個可能需要修正之處，懇請貴處室協助增補，尚祈見諒！修正後的檔案需重新完成整個填報流程。如有疑問，請與本計畫人員聯繫，謝謝！")
   )
 
-check02$flag_LC_txt <- if_else(
-  check02$err_flag_LC == 0, "貴處室提供的資料，沒有檢查出需要修正之處。謝謝貴處室協助完成填報工作，請等待其他處室重新上傳資料，如果處室間資料比對有誤，系統會再發信通知。謝謝！",
-  paste0("經本計畫複檢，仍發現共有",  check02$err_flag_LCs,  "個可能需要修正之處，懇請貴處室協助增補，尚祈見諒！修正後的檔案需重新完成整個填報流程。如有疑問，請與本計畫人員聯繫，謝謝！")
-)
+# check02$flag_LC_txt <- if_else(
+#   check02$err_flag_LC == 0, "貴處室提供的資料，沒有檢查出需要修正之處。謝謝貴處室協助完成填報工作，請等待其他處室重新上傳資料，如果處室間資料比對有誤，系統會再發信通知。謝謝！",
+#   paste0("經本計畫複檢，仍發現共有",  check02$err_flag_LCs,  "個可能需要修正之處，懇請貴處室協助增補，尚祈見諒！修正後的檔案需重新完成整個填報流程。如有疑問，請與本計畫人員聯繫，謝謝！")
+# )
 
-temp <- c("flag1", "flag2", "flag3", "flag6", "flag7", "flag8", "flag9", "flag15", "flag16", "flag18", "flag19", "flag20", "flag24", "flag39", "flag45", "flag47", "flag48", "flag49", "flag50", "flag51", "flag52", "flag57", "flag59", "flag62", "flag64", "flag80", "flag82", "flag83", "flag84", "flag85", "flag86", "flag89", "flag90", "flag91", "flag92", "flag93", "flag94", "flag95", "flag96", "flag97", "flag98", "flag99", "flag100", "spe3", "spe5", "spe6", "flag25", "flag26", "flag29", "flag31", "flag56", "flag58", "flag61", "flag67", "flag68", "flag69", "flag70", "flag74", "flag75", "flag101", "spe4")
+temp <- c("flag1", "flag2", "flag3", "flag6", "flag7", "flag8", "flag9", "flag15", "flag16", "flag18", "flag19", "flag20", "flag24", "flag39", "flag45", "flag47", "flag48", "flag49", "flag50", "flag51", "flag52", "flag57", "flag59", "flag62", "flag64", "flag80", "flag82", "flag83", "flag84", "flag85", "flag86", "flag89", "flag90", "flag91", "flag92", "flag93", "flag94", "flag95", "flag96", "flag97", "flag98", "flag99", "flag100", "spe3", "spe5", "spe6")
 for (i in temp){
   for (j in 1:dim(check02)[1]){
     check02[[i]][j] <- if_else(check02[[i]][j] == "", "通過", check02[[i]][j])
@@ -1523,9 +1523,9 @@ for (i in temp){
 
 check02 <- check02 %>%
   subset(select = -c(err_flag, err_flag_P, err_flag_Ps))
-openxlsx :: write.xlsx(check02, file = "C:\\edhr-112t2\\work\\edhr-112t2-check_print-人事.xlsx", rowNames = FALSE, overwrite = TRUE)
+openxlsx :: write.xlsx(check02, file = "C:\\edhr-112t2\\work\\edhr-112t2-check_print.xlsx", rowNames = FALSE, overwrite = TRUE)
 }else{
-openxlsx :: write.xlsx(check02, file = "C:\\edhr-112t2\\work\\edhr-112t2-check_print-人事.xlsx", rowNames = FALSE, overwrite = TRUE)
+openxlsx :: write.xlsx(check02, file = "C:\\edhr-112t2\\work\\edhr-112t2-check_print.xlsx", rowNames = FALSE, overwrite = TRUE)
 }
 
 #####自動化檢誤#####
@@ -1539,13 +1539,13 @@ if(!file.exists(checkfile_server) | #print檔案不存在
   #####自動化通知 - 每小時通知<本次上傳學校名單、需補正學校名單、三階檢通過學校名單>#####
   #初次執行需建立pre_list_agree和pre_correct_list兩個xlsx檔，用if else來做
   #若xlsx檔不存在，建立檔案
-  if(!file.exists("C:/edhr-112t2/dta/edhr_112t2-202404/pre_list_agree_人事.xlsx"))
+  if(!file.exists("C:/edhr-112t2/dta/edhr_112t2-202404/pre_list_agree.xlsx"))
   {
     #建立pre_list_agree.xlsx
     pre_list_agree <- list_agree
-    openxlsx :: write.xlsx(pre_list_agree, file = "C:/edhr-112t2/dta/edhr_112t2-202404/pre_list_agree_人事.xlsx", rowNames = FALSE, overwrite = TRUE)
+    openxlsx :: write.xlsx(pre_list_agree, file = "C:/edhr-112t2/dta/edhr_112t2-202404/pre_list_agree.xlsx", rowNames = FALSE, overwrite = TRUE)
     #建立pre_correct_list.xlsx
-    correct_list <- readxl :: read_excel("C:\\edhr-112t2\\work\\edhr-112t2-check_print-人事.xlsx") %>% #本次需補正學校
+    correct_list <- readxl :: read_excel("C:\\edhr-112t2\\work\\edhr-112t2-check_print.xlsx") %>% #本次需補正學校
       subset(select = c(organization_id, edu_name2))
     correct_list$edu_name2 <- paste(correct_list$edu_name2, "(", correct_list$organization_id, ")", sep = "")
     correct_list <- correct_list %>%
@@ -1559,19 +1559,19 @@ if(!file.exists(checkfile_server) | #print檔案不存在
     {
       correct_list = correct_list
     }
-    openxlsx :: write.xlsx(correct_list, file = "C:/edhr-112t2/dta/edhr_112t2-202404/pre_correct_list_人事.xlsx", rowNames = FALSE, overwrite = TRUE)
+    openxlsx :: write.xlsx(correct_list, file = "C:/edhr-112t2/dta/edhr_112t2-202404/pre_correct_list.xlsx", rowNames = FALSE, overwrite = TRUE)
   }else
   {
     print("pre_list_agree和pre_correct_list兩個xlsx檔存在，繼續執行")
   }
   
   #若xlsx檔存在，執行
-  if(file.exists("C:/edhr-112t2/dta/edhr_112t2-202404/pre_list_agree_人事.xlsx"))
+  if(file.exists("C:/edhr-112t2/dta/edhr_112t2-202404/pre_list_agree.xlsx"))
   {
     #讀取上次名單
-    pre_list_agree <- readxl :: read_excel("C:/edhr-112t2/dta/edhr_112t2-202404/pre_list_agree_人事.xlsx")
+    pre_list_agree <- readxl :: read_excel("C:/edhr-112t2/dta/edhr_112t2-202404/pre_list_agree.xlsx")
     pre_list_agree$organization_id <- as.character(pre_list_agree$organization_id)
-    pre_correct_list <- readxl :: read_excel("C:/edhr-112t2/dta/edhr_112t2-202404/pre_correct_list_人事.xlsx")
+    pre_correct_list <- readxl :: read_excel("C:/edhr-112t2/dta/edhr_112t2-202404/pre_correct_list.xlsx")
     pre_correct_list <- mutate(pre_correct_list, pre_correct = 1)
     #以下是為了解決pre_list_agree無法合併的問題(若出現此問題只會發生在list_agree為空 且 pre_list_agree為空)
     if(dim(pre_list_agree)[1] == 0 & dim(list_agree)[1] == 0)
@@ -1616,9 +1616,9 @@ if(!file.exists(checkfile_server) | #print檔案不存在
     #compare_correct_list$edu_name2 <- paste(compare_correct_list$edu_name2, "(", compare_correct_list$organization_id, ")", sep = "")
     #另存'本次已上傳名單"，以便於與下次名單比對
     pre_list_agree <- list_agree
-    openxlsx :: write.xlsx(pre_list_agree, file = "C:/edhr-112t2/dta/edhr_112t2-202404/pre_list_agree_人事.xlsx", rowNames = FALSE, overwrite = TRUE)
+    openxlsx :: write.xlsx(pre_list_agree, file = "C:/edhr-112t2/dta/edhr_112t2-202404/pre_list_agree.xlsx", rowNames = FALSE, overwrite = TRUE)
     
-    correct_list <- readxl :: read_excel("C:\\edhr-112t2\\work\\edhr-112t2-check_print-人事.xlsx") %>% #本次需補正學校
+    correct_list <- readxl :: read_excel("C:\\edhr-112t2\\work\\edhr-112t2-check_print.xlsx") %>% #本次需補正學校
       subset(select = c(organization_id, edu_name2))
     correct_list_c <- correct_list %>%
       subset(select = c(organization_id))
@@ -1774,7 +1774,7 @@ if(!file.exists(checkfile_server) | #print檔案不存在
     }
     
     #另存'本次需修正名單"，以便於與下次名單比對
-    openxlsx :: write.xlsx(correct_list, file = "C:/edhr-112t2/dta/edhr_112t2-202404/pre_correct_list_人事.xlsx", rowNames = FALSE, overwrite = TRUE)
+    openxlsx :: write.xlsx(correct_list, file = "C:/edhr-112t2/dta/edhr_112t2-202404/pre_correct_list.xlsx", rowNames = FALSE, overwrite = TRUE)
     
     clear_list <- left_join(compare_list, correct_list, by = c("organization_id")) %>% #本次三階檢通過學校
       subset(select = c(organization_id, edu_name2, name)) %>%
@@ -1855,7 +1855,7 @@ if(!file.exists(checkfile_server) | #print檔案不存在
     
     #excel視窗通知
     #先判斷check_print檔案是否使用中(以"是否可更改檔案名稱"來判斷 若可更改 代表未使用中)
-    checkprint_filename <- "C:\\edhr-112t2\\work\\edhr-112t2-check_print-人事.xlsx"
+    checkprint_filename <- "C:\\edhr-112t2\\work\\edhr-112t2-check_print.xlsx"
     checkprint_filename_2 <- substr(checkprint_filename, start = 1, stop = str_locate(checkprint_filename, ".xlsx")[ ,1] - 1)  
     
     if(file.rename(from = checkprint_filename, to = paste(checkprint_filename_2, "2.xlsx", sep = "")) == TRUE)
@@ -1991,7 +1991,7 @@ if(!file.exists(checkfile_server) | #print檔案不存在
           
           shell.exec("C:\\autochecking\\fileclose.bat")
           
-          file.rename(from = "C:\\edhr-112t2\\work\\edhr-112t2-check_print-人事2.xlsx", to = "C:\\edhr-112t2\\work\\edhr-112t2-check_print-人事.xlsx")
+          file.rename(from = "C:\\edhr-112t2\\work\\edhr-112t2-check_print2.xlsx", to = "C:\\edhr-112t2\\work\\edhr-112t2-check_print.xlsx")
         }
       }
     }else
