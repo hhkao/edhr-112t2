@@ -2,8 +2,8 @@
 flag_person <- drev_person_1
 
 #本校到職日期晚於填報基準日。
-flag_person$survey_year <- 112
-flag_person$survey_mon <- 9
+flag_person$survey_year <- 113
+flag_person$survey_mon <- 3
 
 flag_person$arvy <-
   substr(flag_person$onbodat, 1, 3) %>% as.numeric()
@@ -81,7 +81,7 @@ if (dim(flag_person %>% subset(err_spe == 1))[1] != 0) {
   spe3 <- spe3 %>%
     subset(select = c(organization_id, spe3)) %>%
     distinct(organization_id, spe3) %>%
-    mutate(spe3 = paste(spe3, "（請確認修正到職日期，並請以資料基準日112年9月30日當時情況為準）", sep = ""))
+    mutate(spe3 = paste(spe3, "（請確認修正到職日期，並請以資料基準日113年3月29日當時情況為準）", sep = ""))
 } else{
   #偵測spe3是否存在。若不存在，則產生NA行
   if ('spe3' %in% ls()) {
