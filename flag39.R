@@ -48,14 +48,14 @@ flag_person$birthy <- as.numeric(flag_person$birthy)
 flag_person$birthm <- as.numeric(flag_person$birthm)
 flag_person$birthd <- as.numeric(flag_person$birthd)
 
-flag_person$survey_year <- 2023
+flag_person$survey_year <- 2024
 
 #創設變項年齡（以年為單位）：age
 flag_person$age <- 0
 flag_person$age <-
   if_else(
     flag_person$survey_year %% 4 != 0,
-    ((flag_person$survey_year - 1911) + 9 / 12 + 30 / 365) - (
+    ((flag_person$survey_year - 1911) + 3 / 12 + 29 / 365) - (
       flag_person$birthy + (flag_person$birthm / 12) + (flag_person$birthd / 365)
     ),
     flag_person$age
@@ -63,7 +63,7 @@ flag_person$age <-
 flag_person$age <-
   if_else(
     flag_person$survey_year %% 4 == 0,
-    ((flag_person$survey_year - 1911) + 9 / 12 + 30 / 366) - (
+    ((flag_person$survey_year - 1911) + 3 / 12 + 29 / 366) - (
       flag_person$birthy + (flag_person$birthm / 12) + (flag_person$birthd / 366)
     ),
     flag_person$age
@@ -120,7 +120,7 @@ flag_person$tser <- 0
 flag_person$tser <-
   if_else(
     flag_person$survey_year %% 4 != 0,
-    ((flag_person$survey_year - 1911) + 9 / 12 + 30 / 365) - (
+    ((flag_person$survey_year - 1911) + 3 / 12 + 29 / 365) - (
       flag_person$onbodaty + (flag_person$onbodatm / 12) + (flag_person$onbodatd /
                                                               365)
     ),
@@ -129,7 +129,7 @@ flag_person$tser <-
 flag_person$tser <-
   if_else(
     flag_person$survey_year %% 4 == 0,
-    ((flag_person$survey_year - 1911) + 9 / 12 + 30 / 366) - (
+    ((flag_person$survey_year - 1911) + 3 / 12 + 29 / 366) - (
       flag_person$onbodaty + (flag_person$onbodatm / 12) + (flag_person$onbodatd /
                                                               366)
     ),
