@@ -4,7 +4,7 @@ flag_person <- drev_person_1
 #代理教師、兼任教師、長期代課教師、鐘點教師、約聘僱教師、約用教師到職日過早
 
 #兼任教師、長期代課教師、鐘點教師、約聘僱教師、約用教師到職日應為上一個學期開學日(每學期(年)需修改emp_year、emp_mon的時間)
-flag_person$emp_year1 <- 111
+flag_person$emp_year1 <- 112
 flag_person$emp_mon1 <- 8
 
 flag_person$arvy1 <-
