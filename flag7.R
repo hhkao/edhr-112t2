@@ -1,7 +1,7 @@
 # flag7: 出生年月日換算成年齡後，偏高或偏低。 -------------------------------------------------------------------
 flag_person <- drev_person_1
 
-flag_person$survey_year <- 112
+flag_person$survey_year <- 113
 flag_person$birthy <-
   substr(flag_person$birthdate, 1, 3) %>% as.numeric()
 
