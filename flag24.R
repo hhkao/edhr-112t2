@@ -1,8 +1,8 @@
 # flag24: 本校到職日期與填報基準日的差距，不應小於本校任職需扣除年資。 -------------------------------------------------------------------
 flag_person <- drev_person_1
 
-flag_person$survey_year <- 2023
-flag_person$survey_mon <- 9
+flag_person$survey_year <- 2024
+flag_person$survey_mon <- 3
 flag_person$onbodaty <- ""
 flag_person$onbodatm <- ""
 flag_person$onbodatd <- ""
@@ -53,7 +53,7 @@ flag_person$tser <- 0
 flag_person$tser <-
   if_else(
     flag_person$survey_year %% 4 != 0,
-    ((flag_person$survey_year - 1911) + 9 / 12 + 30 / 365) - (
+    ((flag_person$survey_year - 1911) + 3 / 12 + 29 / 365) - (
       flag_person$onbodaty + (flag_person$onbodatm / 12) + (flag_person$onbodatd /
                                                               365)
     ),
@@ -62,7 +62,7 @@ flag_person$tser <-
 flag_person$tser <-
   if_else(
     flag_person$survey_year %% 4 == 0,
-    ((flag_person$survey_year - 1911) + 9 / 12 + 30 / 366) - (
+    ((flag_person$survey_year - 1911) + 3 / 12 + 29 / 366) - (
       flag_person$onbodaty + (flag_person$onbodatm / 12) + (flag_person$onbodatd /
                                                               366)
     ),
